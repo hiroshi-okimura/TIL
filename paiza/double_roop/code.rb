@@ -61,3 +61,95 @@ n.times do |i|
         end
     end
 end
+
+
+# 整数 N , K と N 行 K 列 の二次元配列 A が与えられます。 A の要素のうち、最大の要素の値を出力してください。
+
+n, k = gets.split.map(&:to_i)
+arr = []
+
+n.times { arr.push(gets.chomp.split.map(&:to_i)) }
+
+puts arr.flatten.max
+
+
+# 模範解答
+
+puts 'Enter two integers: '
+n, k = gets.split.map(&:to_i)
+
+a = []
+n.times do
+  puts 'Enter list of integers: '
+  a << gets.split.map(&:to_i)
+end
+
+ans = 0
+for i in 0...n
+  for j in 0...k
+    if a[i][j] > ans
+      ans = a[i][j]
+    end
+  end
+end
+
+puts ans
+
+
+# 整数 N , K と N 行 K 列 の二次元配列 A が与えられるので、 A の行ごとの和を出力してください。
+
+n, k = gets.split.map(&:to_i)
+arr = []
+
+n.times { arr.push(gets.chomp.split.map(&:to_i)) }
+
+for i in 0...n
+    puts arr[i].sum
+end
+
+
+# 整数 N が与えられるので、次の処理を N 回してください。
+# ・ 配列のサイズ K とその要素 A1 ... AK が与えられるので、全ての要素の和を求めて出力してください。
+
+n = gets.to_i
+
+n.times do
+    arr = gets.split.map(&:to_i)
+    arr.shift
+    puts arr.sum
+end
+
+
+# 整数 N が与えられるので、次の規則に従って N 行の出力をしてください。
+# ・ N 行のうち、 i 行目では、1 から i までの数字を半角スペース区切りで出力してください。
+
+n = gets.to_i
+
+for i in 1..n do
+    arr = []
+    for j in 1..i do
+        arr.push(j)
+    end
+    puts arr.join(' ')
+end
+
+
+# 配列 A と B についての情報が与えられるので、(A の 1 つの要素) × (B の 1 つの要素) の最大値を求めてください。
+# ・ 1 行目では、配列 A の要素数を表す整数 N と配列 B の要素数を表す整数 K が半角スペース区切りで与えられます。
+# ・ 2 行目では、配列 A の各要素が半角スペース区切りで与えられます。
+# ・ 3 行目では、配列 B の各要素が半角スペース区切りで与えられます。
+
+n, k = gets.split.map(&:to_i)
+a = gets.split.map(&:to_i)
+b = gets.split.map(&:to_i)
+
+ans = -10000
+for i in 0...n
+    for j in 0...k
+        if a[i] * b[j] > ans
+            ans = a[i] * b[j]
+        end
+    end
+end
+
+puts ans
