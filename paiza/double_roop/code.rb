@@ -153,3 +153,52 @@ for i in 0...n
 end
 
 puts ans
+
+
+# N 行 K 列の行列 A の i 行 j 列 の要素 A_ij を A_ji とした K 行 N 列の行列を元の配列 A の転置行列と言います。
+# 例として、
+
+# 1 2 3
+# 4 5 6
+# 7 8 9
+
+# の転置行列は
+
+# 1 4 7
+# 2 5 8
+# 3 6 9
+
+# です。
+
+# 行列 A についての情報が与えられるので、A の転置行列を出力してください。
+
+n, k = gets.split.map(&:to_i)
+arr = []
+
+n.times { arr.push(gets.chomp.split.map(&:to_i)) }
+
+arr2 = Array.new(k) { Array.new(n) }
+for i in 0...n
+    for j in 0...k
+        arr2[j][i] = arr[i][j]
+    end
+end
+
+for i in 0...k
+    puts arr2[i].join(' ')
+end
+
+# 模範解答
+
+n, k = gets.split.map(&:to_i)
+a = []
+n.times do
+    a << gets.split.map(&:to_i)
+end
+
+for i in 0...k
+    for j in 0...n
+        print "#{a[j][i]} "
+    end
+    puts
+end
