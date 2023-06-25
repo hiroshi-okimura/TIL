@@ -202,3 +202,47 @@ for i in 0...k
     end
     puts
 end
+
+
+# 配列 A の要素数 N とその要素 A_i (1 ≦ i ≦ N) が与えられるので、A についてのかけ算表 B を出力してください。かけ算表は N * N の二次元配列の形式とし、B の i 行 j 列の要素 B_ij について、B_ij = Ai * Aj (1 ≦ i , j ≦ N) が成り立つものとします。
+# 例として、A = [1,2,3] のとき B は
+
+# 1 2 3
+# 2 4 6
+# 3 6 9
+
+# となります。
+
+n = gets.to_i
+arr = gets.split.map(&:to_i)
+
+ans = Array.new(n) { Array.new(n) }
+for i in 0...n
+    for j in 0...n
+        ans[i][j] = arr[i] * arr[j]
+    end
+end
+
+for i in 0...n
+    puts ans[i].join(' ')
+end
+
+
+# 整数 N が与えられるので、2 以上 N 以下の素数の個数を求めてください。
+# エラトステネスの篩というアルゴリズムを用いると高速に求めることができます。
+
+n = gets.to_i
+arr = []
+for i in 2..n do
+    arr.push(i)
+end
+
+for i in 2..n do
+    for j in 2..n do
+        if i * j <= n
+            arr.delete(i * j)
+        end
+    end
+end
+
+puts arr.length
