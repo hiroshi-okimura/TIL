@@ -285,3 +285,67 @@ for h in 0..23
         end
     end
 end
+
+
+# x + y < 100 かつ (x ^ 3) + (y ^ 3) < 100000 が成り立つような正の整数 x , y について x × y の最大値を二重ループを用いて求めてください。
+
+ans = 0
+for x in 1..100 do
+    for y in 1..100 do
+        if x + y < 100 && (x ** 3) + (y ** 3) < 100000
+            if x * y > ans
+                ans = x * y
+            end
+        end
+    end
+end
+
+puts ans
+
+
+# paiza国では、1 円と X 円と Y 円の 3 種類の硬貨しかありません。ちょうど Z 円を支払うとき、支払う硬貨の枚数が最小になるように支払ったときの硬貨の枚数を求めてください。
+# ただし、支払う各硬貨の枚数に制限は無いものとします。
+
+x, y, z = gets.split.map(&:to_i)
+
+ans = z
+
+for num_x in 0..(z / x)
+    for num_y in 0..(z / y)
+        if num_x * x + num_y * y <= z
+            num_one = z - num_x * x - num_y * y
+            if num_x + num_y + num_one < ans
+                ans = num_x + num_y + num_one
+            end
+        end
+    end
+end
+
+puts ans
+
+
+# 整数 N が与えられるので、三角形の三辺の長さの和が N であり、全ての辺の長さが整数であるような直角三角形が存在するかどうかを判定してください。
+# なお、直角三角形の斜辺 a と他の二辺 b , c の間には次のような三平方の定理が成り立ちます。
+# a^2 = b^2 + c^2
+# 三辺の長さの和が N であるような全ての三角形の三辺 a , b , c の組み合わせのうち、
+# 三平方の定理を満たすものが 1 つでもあれば "YES" , それ以外の場合は "NO" が答えとなります。
+# 全ての三辺の場合を全列挙することができれば三平方の定理を満たすかの判定をすることで答えを求めることができます。
+
+n = gets.to_i
+
+flag = false
+for b in 1..(n-1)
+    for c in 1..(n - b - 1)
+        a = n - b - c
+        if a ** 2 == b ** 2 + c ** 2
+            flag = true
+        end
+    end
+end
+
+if flag
+    puts "YES"
+else
+    puts "NO"
+end
+
