@@ -38,3 +38,36 @@ User.where("email LIKE '%.com'")
 # User モデルと Post モデルがあり、 Post モデルには views というカラムがあります。
 # 全てのユーザーをそのユーザーが書いた投稿のビュー数の合計が多い順にソートするためのActiveRecordのコードを書いてください。
 User.joins(:posts).group(:id).order("SUM(views) DESC")
+
+
+# 初級
+
+# User モデルに age というカラムがあります。20歳以上の全てのユーザーを取得するためのActiveRecordのコードを書いてください。
+User.where("age >= 20")
+SELECT * FROM users WHERE age >= 20;
+
+# User モデルがあり、name と email のカラムを持っています。
+# ユーザーの名前が "John Doe" でメールアドレスが "john.doe@example.com" のユーザーを更新するためのActiveRecordのコードを書いてください。
+user = User.find_by(name: "John Doe", email: "john.doe@example.com")
+user.update(name: "John Doe", email: "john.doe@example.com")
+UPDATE users SET name = "John Doe", email = "john.doe@example.com"
+
+# 中級
+
+# User モデルと Post モデルがあり、 User モデルは Post モデルと 1対多 のリレーションを持つ場合、
+# ユーザーが1つ以上の投稿を持っているユーザーのみを取得するためのActiveRecordのコードを書いてください。
+User.joins(:posts).group(:id).having("COUNT(posts.id) >= 1")
+SELECT * FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id HAVING COUNT(posts.id) >= 1;
+# or
+User.joins(:posts).distinct
+SELECT DISTINCT users.* FROM users INNER JOIN posts ON posts.user_id = users.id;
+
+# User モデルには email カラムがあります。メールアドレスが空のユーザーがいるかどうかを確認するためのActiveRecordのコードを書いてください。
+User.where(email: nil).exists?
+SELECT * FROM users WHERE email IS NULL;
+
+# 上級
+
+# User モデルと Post モデルがあり、 Post モデルには created_at というカラムがあります。各ユーザーの最新の投稿を取得するためのActiveRecordのコードを書いてください。
+User.joins(:posts).group(:id).select("users.*, MAX(posts.created_at) AS latest_post")
+SELECT users.*, MAX(posts.created_at) AS latest_post FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id;
