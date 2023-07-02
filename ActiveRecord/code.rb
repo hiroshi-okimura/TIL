@@ -71,3 +71,33 @@ SELECT * FROM users WHERE email IS NULL;
 # User モデルと Post モデルがあり、 Post モデルには created_at というカラムがあります。各ユーザーの最新の投稿を取得するためのActiveRecordのコードを書いてください。
 User.joins(:posts).group(:id).select("users.*, MAX(posts.created_at) AS latest_post")
 SELECT users.*, MAX(posts.created_at) AS latest_post FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id;
+
+
+初級: 
+Post.allを用いてデータベースから全ての投稿を取得するコードを書いてください。
+Post.all
+SELECT * FROM posts;
+
+初級: 
+Post.where(title: 'My first post') を用いて、タイトルが 'My first post' である全ての投稿を取得するコードを書いてください。
+Post.where(title: 'My first post')
+SELECT * FROM posts WHERE title = 'My first post';
+
+中級: 
+UserとPostモデルがあり、Userは多数のPostを持つ(has_many :posts)関係にあるとします。
+あるユーザー（例えば、idが3のユーザー）の全ての投稿を取得するコードを書いてください。
+User.find(3).posts
+SELECT * FROM posts WHERE user_id = 3;
+
+中級: 
+UserとPostモデルがあり、Userは多数のPostを持つ(has_many :posts)関係にあるとします。
+ユーザーが作成した投稿の数が10以上の全てのユーザーを取得するコードを書いてください。
+User.joins(:posts).group(:id).having("COUNT(posts.id) >= 10")
+SELECT * FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id HAVING COUNT(posts.id) >= 10;
+
+上級: 
+UserとPostモデルがあり、Userは多数のPostを持つ(has_many :posts)関係にあるとします。
+また、Postはviewsというinteger型のフィールドを持っており、これはその投稿が何回見られたかを示します。
+全てのユーザーをそのユーザーの全ての投稿の合計ビュー数に基づいて降順でソートするコードを書いてください。
+User.joins(:posts).group(:id).order("SUM(posts.views) DESC")
+SELECT * FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id ORDER BY SUM(posts.views) DESC;
