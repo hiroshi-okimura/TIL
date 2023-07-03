@@ -131,3 +131,130 @@ end
 arr.each do |a|
   puts a.join(' ')
 end
+
+
+n 人の人に関して、それぞれの人の名前と財産が与えられます。
+その後に人名 S が与えられるので （S は最初に与えられた名前のうちのいずれか） 、 S の財産を表す整数を出力してください。
+
+n = gets.to_i
+arr = []
+n.times { arr.push(gets.chomp.split) }
+s = gets.chomp
+
+arr.each do |name, money|
+    puts money if s == name
+end
+
+n = gets.to_i
+
+properties = {}
+n.times do
+  s, a = gets.split(' ')
+  properties[s] = a.to_i
+end
+
+s = gets.chomp
+puts properties[s]
+
+
+n 人の人の名前 s_1, ..., s_n が与えられたのち、 m 回の「攻撃」に関する情報が与えられます。各行は “p_i a_i” というフォーマットで与えられ、 
+p_i はダメージを受けた人の名前 （s_1, ..., s_n のいずれか） 、 a_i は p_i が受けたダメージ数を表す数です。
+
+最後に人名 S が与えられるので （S は s_1, ..., s_n のいずれか） 、 S が受けたダメージの合計を出力してください。
+なお、一度もダメージを受けていない人の合計ダメージは 0 とします。
+
+n = gets.to_i
+
+damage = {}
+n.times do
+  name = gets.chomp
+  damage[name] = 0
+end
+
+m = gets.to_i
+m.times do
+  name, attack = gets.split(' ')
+  damage[name] += attack.to_i
+end
+
+s = gets.chomp
+puts damage[s]
+
+
+n 人の人の名前 s_1, ..., s_n が与えられたのち、 m 回の「攻撃」に関する情報が与えられます。
+各行は “p_i a_i” というフォーマットで与えられ、 p_i はダメージを受けた人の名前 （s_1, ..., s_n のいずれか） 、 
+a_i は p_i が受けたダメージ数を表す数です。なお、一度もダメージを受けていない人の合計ダメージは 0 とします。
+
+それぞれの人が受けた合計ダメージを、人の名前のアルファベットの辞書順に出力してください。
+
+n = gets.to_i
+
+damage = {}
+n.times do
+  name = gets.chomp
+  damage[name] = 0
+end
+
+m = gets.to_i
+m.times do
+  name, attack = gets.split(' ')
+  damage[name] += attack.to_i
+end
+
+
+damage.sort.each do |name, damage|
+    puts damage
+end
+
+
+p 人のグループ A , q 人のグループ B , r 人のグループ C があります。各グループのメンバーにはそれぞれ番号がつけられており、 
+A グループの i 番目の人は B グループの j 番目の人に仕事を任せ、 B グループの j 番目の人は与えられた仕事を C グループの k 番目の人に任せます。
+すると結局、 A グループの i 番目の人の仕事をするのは C グループの k 番目の人だということになります。
+
+パイザ君は A グループの各人の仕事を結局 C グループの誰が行うことになるのか知りたがっています。 
+A グループの人のそれぞれが最終的に C グループの誰に仕事を頼むことになるのかを、 A グループの人の番号が小さい順に p 行出力してください。
+
+p, q, r = gets.split.map(&:to_i)
+a = []
+b = []
+p.times { a.push(gets.split.map(&:to_i)) }
+q.times { b.push(gets.split.map(&:to_i)) }
+
+arr = []
+ans = []
+a.each do |a_per|
+    b.each do |b_per|
+        if a_per[1] == b_per[0]
+            arr.push(a_per[0])
+            arr.push(b_per[1])
+            ans.push(arr)
+        end
+        arr = []
+    end
+end
+
+ans.sort.each do |i|
+    puts i.join(' ')
+end
+
+模範解答
+n, m, l = gets.split(' ').map(&:to_i)
+
+group_a = {}
+n.times do
+  num, req = gets.split(' ').map(&:to_i)
+  group_a[num] = req
+end
+
+group_b = {}
+m.times do
+  num, req = gets.split(' ').map(&:to_i)
+  group_b[num] = req
+end
+
+group_c = {}
+n.times { |i| group_c[i + 1] = group_b[group_a[i + 1]] }
+
+group_c.each do |val|
+  puts val.join(' ')
+end
