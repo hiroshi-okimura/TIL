@@ -258,3 +258,71 @@ n.times { |i| group_c[i + 1] = group_b[group_a[i + 1]] }
 group_c.each do |val|
   puts val.join(' ')
 end
+
+
+10000 以上かつ 13 で割り切れるような最小の自然数を求めてください。
+
+n = 10000
+while n >= 10000
+    if n % 13 == 0
+        puts n
+        break
+    end
+    n += 1
+end
+
+
+パイザ君と霧島京子は最初どちらも数 1 をもっています。パイザ君は自分の番が来ると、自分のもっている数の a 倍を霧島京子の数に足してあげます。
+霧島京子は自分の番が来ると、自分のもっている数を b で割った余りをパイザ君の数に足してあげます。
+この手続きをパイザ君の番から始めて、霧島京子の数がnより大きくなるまで繰り返します。
+
+手続きが終わったときのパイザ君の操作回数を求めてください。
+
+n = gets.to_i
+a, b = gets.split(' ').map(&:to_i)
+
+paiza, kyoko = 1, 1
+times = 0
+while true
+  kyoko += paiza * a
+  times += 1
+
+  break if kyoko > n
+
+  paiza += kyoko % b
+end
+
+puts times
+
+
+カウンター魔法を得意とするパイザ君は、同じくカウンター魔法を使うモンスターと戦っています。
+バトルはターン制で、パイザ君が先攻で、パイザ君とモンスターで交互に魔法を使い合います。
+パイザ君の魔法は 1 回目と 2 回目に使うときにはダメージ 1 ですが、 
+3 回目以降の n 回目には、(モンスターから受けた (n - 1) 回目の攻撃のダメージ) + (モンスターから受けた (n - 2) 回目の攻撃のダメージ) のダメージを与えます。
+モンスターの魔法はこれよりも強力で、 1 回目と 2 回目には同じくダメージ 1 ですが、 
+3 回目以降の n 回目には、 (パイザ君から受けた (n - 1) 回目の攻撃のダメージ) * 2 + (パイザ君から受けた (n - 2) 回目の攻撃のダメージ) のダメージを与えます。
+
+パイザ君は自分がどれくらいモンスターの攻撃を耐えられるか知りたいと思っています。
+パイザ君の体力を H として、両者が同じ魔法を使い続けたとき、モンスターの何回目の攻撃でパイザ君の体力が 0 以下になるかを出力してください。
+
+h = gets.to_i
+
+n = 1
+paiza_attack = []
+monster_attack = []
+while h > 0
+    if n == 1 || n == 2
+        paiza_attack.push(1)
+        monster_attack.push(1)
+        h -= monster_attack[n-1]
+        break if h <= 0
+    else
+        paiza_attack.push(monster_attack[n-2] + monster_attack[n-3])
+        monster_attack.push(paiza_attack[n-2] * 2 + paiza_attack[n-3])
+        h -= monster_attack[n-1]
+        break if h <= 0
+    end
+    n += 1
+end
+
+puts n

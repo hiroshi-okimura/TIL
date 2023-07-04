@@ -126,3 +126,36 @@ SELECT users.*, COUNT(posts.id) AS posts_count FROM users INNER JOIN posts ON po
 各ユーザーの投稿が合計で何回いいねされたかをユーザーごとに取得するコードを書いてください。
 User.joins(:posts).group(:id).select("users.*, SUM(posts.likes) AS likes_count")
 SELECT users.*, SUM(posts.likes) AS likes_count FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id;
+
+
+初級: 
+Post モデルに published という boolean 型のフィールドがあるとします。公開されたすべての投稿を取得するコードを書いてください。
+Post.where(published: true)
+SELECT * FROM posts WHERE published = true;
+
+初級: 
+Post モデルに likes という integer 型のフィールドがあるとします。いいねの数が10以上の投稿をすべて取得するコードを書いてください。
+Post.where("likes >= 10")
+SELECT * FROM posts WHERE likes >= 10;
+
+中級: 
+User モデルと Post モデルがあり、User は多数の Post を持つ(has_many :posts)関係にあるとします。
+あるユーザー（例えば、idが3のユーザー）の投稿をすべて取得し、N+1問題を避けるコードを書いてください。
+user = User.includes(:posts).find(3)
+user.posts
+SELECT * FROM users WHERE id = 3 LIMIT 1;
+SELECT * FROM posts WHERE user_id = 3;
+
+
+中級: 
+User モデルと Post モデルがあり、User は多数の Post を持つ(has_many :posts)関係にあるとします。
+各ユーザーが公開した投稿の数をユーザーごとに取得するコードを書いてください。
+User.joins(:posts).group(:id).select("users.*, COUNT(posts.id) AS posts_count")
+SELECT users.*, COUNT(posts.id) AS posts_count FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id;
+
+上級: 
+User モデルと Post モデルがあり、User は多数の Post を持つ(has_many :posts)関係にあるとします。
+また、Post は likes という integer 型のフィールドを持っており、これはその投稿が何回いいねされたかを示します。
+各ユーザーの投稿がそれぞれ何回いいねされたかの平均値をユーザーごとに取得するコードを書いてください。
+User.joins(:posts).group(:id).select("users.*, AVG(posts.likes) AS likes_average")
+SELECT users.*, AVG(posts.likes) AS likes_average FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id;
