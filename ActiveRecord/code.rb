@@ -159,3 +159,26 @@ User モデルと Post モデルがあり、User は多数の Post を持つ(has
 各ユーザーの投稿がそれぞれ何回いいねされたかの平均値をユーザーごとに取得するコードを書いてください。
 User.joins(:posts).group(:id).select("users.*, AVG(posts.likes) AS likes_average")
 SELECT users.*, AVG(posts.likes) AS likes_average FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id;
+
+
+初級 
+Userモデルがあり、その中にnameという属性があるとします。nameが"John"のユーザーを全て取得するためのActiveRecordクエリを書いてください。
+User.where(name: "John")
+SELECT * FROM users WHERE name = "John";
+
+中級 
+Userモデルがあり、その中にcreated_atという属性があるとします。今日作成されたユーザーを全て取得するためのActiveRecordクエリを書いてください。
+User.where(created_at: Time.zone.now.all_day)
+SELECT * FROM users WHERE created_at BETWEEN '2020-01-01 00:00:00' AND '2020-01-01 23:59:59';
+
+中級 
+UserモデルとPostモデルがあり、Userは多数のPostを持つ(has_many :posts)関連付けがされているとします。
+特定のユーザー(user)が持つポストを全て取得するためのActiveRecordクエリを書いてください。
+User.find(1).posts
+SELECT * FROM posts WHERE user_id = 1;
+
+上級 
+UserモデルとPostモデルがあり、Userは多数のPostを持つ(has_many :posts)関連付けがされているとします。
+また、Postモデルにはlikesという整数型のカラムがあります。全てのユーザーを、そのユーザーが持つポストのlikesの合計が多い順にソートした結果を取得するためのActiveRecordクエリを書いてください。
+User.joins(:posts).group(:id).order("SUM(posts.likes) DESC")
+SELECT * FROM users INNER JOIN posts ON posts.user_id = users.id GROUP BY users.id ORDER BY SUM(posts.likes) DESC;
