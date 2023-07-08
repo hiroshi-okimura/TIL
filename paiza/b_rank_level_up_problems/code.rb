@@ -17,3 +17,16 @@ arr.each do |a, b|
 end
 
 puts ans
+
+
+スペース区切りの2つの整数と、文字列が入力されるので、2つの整数の範囲の部分文字列を出力してください。
+
+a, b = gets.split.map(&:to_i)
+n = gets.chomp
+if a == b
+    puts n[a-1]
+else
+    for i in a..b
+        print n[i-1]
+    end
+end
