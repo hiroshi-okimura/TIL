@@ -30,3 +30,16 @@ else
         print n[i-1]
     end
 end
+
+
+
+スペース区切りの2つの整数と、文字列が入力されます。2つの整数の範囲の部分文字列を、大文字にして出力してください。
+
+a, b = gets.split.map(&:to_i)
+s = gets.chomp
+
+for i in a-1..b-1
+    s[i] = s[i].upcase
+end
+    
+puts s
