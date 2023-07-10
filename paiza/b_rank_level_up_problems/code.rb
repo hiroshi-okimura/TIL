@@ -43,3 +43,19 @@ for i in a-1..b-1
 end
     
 puts s
+
+
+1行目で文字列 s、2行目で文字列 t が入力されます。
+s が t の中で何回出現するかカウントして出力してください。
+
+pattern = gets.chomp
+string = gets.chomp
+
+result = 0
+(0..(string.size - pattern.size)).each do |i|
+  substring = string.slice(i, pattern.size)
+
+  result += 1 if substring == pattern
+end
+
+puts result
