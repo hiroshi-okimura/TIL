@@ -59,3 +59,19 @@ result = 0
 end
 
 puts result
+
+
+
+1行目に行数を表す整数 n、続く n 行の各行で「文字」と「整数」の組が空白区切りで入力されます。
+n 個の組を、「整数」の値で昇順に並べ変え、「文字」を出力してください。
+
+n = gets.to_i
+arr = Array.new(n) { Array.new(2) }
+
+n.times do |i|
+    arr[i] = gets.chomp.split.reverse
+    arr[i][0] = arr[i][0].to_i
+end
+
+arr.sort!
+n.times { |i| puts arr[i][1] }
