@@ -75,3 +75,9 @@ end
 
 arr.sort!
 n.times { |i| puts arr[i][1] }
+
+
+
+ハンドルネームの生成
+str = gets.chomp
+puts(str.delete("aiueoAIUEO"))
