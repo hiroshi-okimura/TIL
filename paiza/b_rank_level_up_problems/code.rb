@@ -81,3 +81,8 @@ n.times { |i| puts arr[i][1] }
 ハンドルネームの生成
 str = gets.chomp
 puts(str.delete("aiueoAIUEO"))
+
+
+指定された配列（リスト）の定義の中で、同じ値が存在した場合はtrueを、そうでない場合はfalseを出力してください。
+arr = "HND, NRT, KIX, NGO, NGO".chomp.split(', ')
+puts (arr.count - arr.uniq.count) > 0
