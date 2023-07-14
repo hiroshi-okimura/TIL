@@ -86,3 +86,41 @@ puts(str.delete("aiueoAIUEO"))
 指定された配列（リスト）の定義の中で、同じ値が存在した場合はtrueを、そうでない場合はfalseを出力してください。
 arr = "HND, NRT, KIX, NGO, NGO".chomp.split(', ')
 puts (arr.count - arr.uniq.count) > 0
+
+
+指定された配列（リスト）の定義の中で、同じ要素の数をカウントして、その数を出力してください。
+
+array = %w[HND NRT KIX NGO NGO NGO NGO NGO]
+count = {}
+
+array.each do |element|
+  if count[element]
+    count[element] = count[element] + 1
+  else
+    count[element] = 1
+  end
+end
+
+count.each { |_key, value| puts value if value != 1 }
+
+
+1行目に行数を表す整数 n、続く n 行の各行で「文字」と「整数」の組が空白区切りで入力されます。
+n 個の組について、「文字」の値が同じ組同士の数値を足しあわせてまとめ、まとめた数値の降順で、文字とまとめた数値の組を出力してください。
+この際、まとめた数値は重複しません。
+
+n = gets.to_i
+hash = {}
+
+n.times do
+    s, n = gets.split
+    if hash[s]
+        hash[s] += n.to_i
+    else
+        hash[s] = n.to_i
+    end
+end
+
+hash = hash.sort_by { |_, v| -v }.to_h
+hash.each do |key, value|
+    puts "#{key} #{value}"
+end
