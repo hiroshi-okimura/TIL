@@ -155,3 +155,46 @@ result = 'D'
 end
 
 puts result
+
+
+5行5列の五目並べの盤面が与えられます。
+
+盤面の各マスには、"O"か"X"か"."が書かれています。
+
+"O"と"X"は、それぞれプレイヤーの記号を表します。
+
+同じ記号が縦に連続で5つ並んでいれば、その記号のプレイヤーが勝者となります。
+
+勝者の記号を1行で表示してください。
+勝者がいない場合は、引き分けとして、"D"を表示してください。
+
+arr = %w[O X]
+result = 'D'
+
+board = []
+result = 'D'
+
+# 盤面の初期化
+(1..5).each { board.push(gets.chomp.split('')) }
+
+(0..4).each do |i|
+  o = 0
+  x = 0
+  board.each do |row|
+    if row[i] == 'O'
+      o = o + 1
+    elsif row[i] == 'X'
+      x = x + 1
+    end
+  end
+
+  if o == 5
+    result = 'O'
+    break
+  elsif x == 5
+    result = 'X'
+    break
+  end
+end
+
+puts result
