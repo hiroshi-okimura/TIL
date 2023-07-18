@@ -168,9 +168,6 @@ puts result
 勝者の記号を1行で表示してください。
 勝者がいない場合は、引き分けとして、"D"を表示してください。
 
-arr = %w[O X]
-result = 'D'
-
 board = []
 result = 'D'
 
@@ -198,3 +195,67 @@ result = 'D'
 end
 
 puts result
+
+
+
+5行5列の五目並べの盤面が与えられます。
+
+盤面の各マスには、"O"か"X"か"."が書かれています。
+
+"O"と"X"は、それぞれプレイヤーの記号を表します。
+
+同じ記号が斜めに連続で5つ並んでいれば、その記号のプレイヤーが勝者となります。
+
+勝者の記号を1行で表示してください。
+勝者がいない場合は、引き分けとして、"D"を表示してください。
+
+
+board = []
+result = 'D'
+
+# 盤面の初期化
+(1..5).each { board.push(gets.chomp.split('')) }
+
+(1..2).each do |time|
+  o = 0
+  x = 0
+
+  i = 0
+
+  if time == 1
+    j = 0
+  else
+    j = 4
+  end
+
+  (1..5).each do
+    if board[i][j] == 'O'
+      o = o + 1
+    elsif board[i][j] == 'X'
+      x = x + 1
+    else
+      break
+    end
+
+    i = i + 1
+
+    if time == 1
+      j = j + 1
+    else
+      j = j - 1
+    end
+  end
+
+  if o == 5
+    result = 'O'
+    break
+  elsif x == 5
+    result = 'X'
+    break
+  end
+end
+
+puts result
+
+
+
