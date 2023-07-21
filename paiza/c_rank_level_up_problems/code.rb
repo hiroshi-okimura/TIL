@@ -342,3 +342,14 @@ human.times do |i|
         puts "N"
     end
 end
+
+C099
+
+N, D = gets.split.map(&:to_i)
+
+M = D
+(N-1).times do
+    M = M + D - gets.to_i
+end
+
+puts D * M
