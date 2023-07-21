@@ -326,3 +326,19 @@ while h > 0
 end
 
 puts n
+
+
+C097
+
+human, A, B = gets.chomp.split.map(&:to_i)
+human.times do |i|
+    if (i+1) % A == 0 && (i+1) % B == 0
+        puts "AB"
+    elsif (i+1) % A == 0
+        puts "A"
+    elsif (i+1) % B == 0
+        puts "B"
+    else
+        puts "N"
+    end
+end
