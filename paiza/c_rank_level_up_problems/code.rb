@@ -353,3 +353,15 @@ M = D
 end
 
 puts D * M
+
+
+C117
+
+store_num, priod = gets.split.map(&:to_i)
+tatemono, zinken, rieki = gets.split.map(&:to_i)
+
+count = 0
+store_num.times do
+    count += 1 if (rieki * gets.to_i) - tatemono - (zinken * priod) < 0
+end
+puts count
