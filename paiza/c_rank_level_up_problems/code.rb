@@ -365,3 +365,12 @@ store_num.times do
     count += 1 if (rieki * gets.to_i) - tatemono - (zinken * priod) < 0
 end
 puts count
+
+
+C020
+
+kg, first_per, second_per = gets.split.map(&:to_f)
+first_nokori = kg - (kg * (first_per/ 100))
+
+
+puts first_nokori - (first_nokori * (second_per/ 100))

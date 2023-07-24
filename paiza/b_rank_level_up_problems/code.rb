@@ -259,3 +259,63 @@ puts result
 
 
 
+sinbol = %w[O X]
+arr = []
+ans = 'D'
+count = 0
+
+5.times { arr.push(gets.chomp.split('')) }
+
+# 横
+sinbol.each do |s|
+    5.times do |i|
+        5.times do |j|
+            count += 1 if s == arr[i][j]
+            if count == 5
+                ans = s
+            end
+        end
+        count = 0
+    end
+end
+
+
+# 縦
+sinbol.each do |s|
+    5.times do |i|
+        5.times do |j|
+            count += 1 if s == arr[j][i]
+            if count == 5
+                ans = s
+            end
+        end
+        count = 0
+    end
+end
+
+
+# 斜1
+sinbol.each do |s|
+    5.times do |i|
+        count += 1 if s == arr[i][i]
+        if count == 5
+            ans = s
+        end
+    end
+    count = 0
+end
+
+
+# 斜2
+sinbol.each do |s|
+    5.times do |i|
+        count += 1 if s == arr[i][4-i]
+        if count == 5
+            ans = s
+        end
+    end
+    count = 0
+end
+
+
+puts ans
