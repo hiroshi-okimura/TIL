@@ -374,3 +374,30 @@ first_nokori = kg - (kg * (first_per/ 100))
 
 
 puts first_nokori - (first_nokori * (second_per/ 100))
+
+
+C039
+
+arr = gets.chomp.split('+')
+
+count10 = []
+arr.each do |v|
+    count10.push(v.count("<"))
+end
+
+kurai10 = 0
+count10.each do |v|
+    kurai10 += v * 10
+end
+
+count1 = []
+arr.each do |v|
+    count1.push(v.count("/"))
+end
+
+kurai1 = 0
+count1.each do |v|
+    kurai1 += v
+end
+
+puts kurai10 + kurai1
