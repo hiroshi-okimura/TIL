@@ -401,3 +401,18 @@ count1.each do |v|
 end
 
 puts kurai10 + kurai1
+
+
+C016
+
+hash = {'A'=>4, 'E'=>3, 'G'=>6, 'I'=>1, 'O'=>0, 'S'=>5, 'Z'=>2}
+
+arr = gets.chomp.split('')
+
+arr.each do |a|
+    if hash.include?(a)
+        print hash[a]
+    else
+        print a
+    end
+end
