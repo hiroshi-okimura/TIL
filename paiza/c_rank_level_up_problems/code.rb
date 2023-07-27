@@ -416,3 +416,18 @@ arr.each do |a|
         print a
     end
 end
+
+
+C114
+
+N = gets.to_i
+words = N.times.map { gets.chomp }
+
+(N-1).times do |i|
+  if words[i][-1] != words[i+1][0]
+    puts "#{words[i][-1]} #{words[i+1][0]}"
+    exit
+  end
+end
+
+puts "Yes"

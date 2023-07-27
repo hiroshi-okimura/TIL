@@ -319,3 +319,28 @@ end
 
 
 puts ans
+
+
+H, W = gets.chomp.split.map(&:to_i)
+S = []
+H.times { S.push(gets.chomp.split('')) }
+
+y, x = gets.chomp.split.map(&:to_i)
+
+
+move = [-1, 1]
+
+S[y][x] = S[y][x] == '.' ? '#' : '.'
+
+move.each do |i|
+  if y + i >= 0 && y + i < H
+    S[y + i][x] = S[y + i][x] == '.' ? '#' : '.'
+  end
+  if x + i >= 0 && x + i < W
+    S[y][x + i] = S[y][x + i] == '.' ? '#' : '.'
+  end
+end
+
+S.each do |row|
+  puts row.join
+end
