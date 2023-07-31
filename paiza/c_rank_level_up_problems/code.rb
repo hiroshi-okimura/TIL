@@ -431,3 +431,22 @@ words = N.times.map { gets.chomp }
 end
 
 puts "Yes"
+
+
+C049
+
+h = gets.chomp.to_i
+arr = []
+
+h.times { arr.push(gets.chomp.to_i) }
+
+
+a = 1
+count = 0
+
+arr.each do |i|
+    count += (a-i).abs
+    a = i
+end
+
+p count
