@@ -450,3 +450,32 @@ arr.each do |i|
 end
 
 p count
+
+
+
+
+p 人のグループ A , q 人のグループ B , r 人のグループ C があります。
+各グループのメンバーにはそれぞれ番号がつけられており、 A グループの i 番目の人は B グループの j 番目の人に仕事を任せ、 B グループの j 番目の人は与えられた仕事を C グループの k 番目の人に任せます。
+すると結局、 A グループの i 番目の人の仕事をするのは C グループの k 番目の人だということになります。
+
+パイザ君は A グループの各人の仕事を結局 C グループの誰が行うことになるのか知りたがっています。 
+A グループの人のそれぞれが最終的に C グループの誰に仕事を頼むことになるのかを、 A グループの人の番号が小さい順に p 行出力してください。
+
+▼下記解答欄にコードを記入してみよう
+p, q, r = gets.split.map(&:to_i)
+
+h_a = {}
+p.times do
+    key, value = gets.split.map(&:to_i)  # 整数に変換
+    h_a[key] = value
+end
+
+h_b = {}
+q.times do
+    key, value = gets.split.map(&:to_i)  # 整数に変換
+    h_b[key] = value
+end
+
+h_a.sort.each do |key, value|
+    puts "#{key} #{h_b[value]}"  # Aグループのメンバー番号とCグループのメンバー番号を出力
+end
