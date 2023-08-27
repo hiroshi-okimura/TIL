@@ -479,3 +479,15 @@ end
 h_a.sort.each do |key, value|
     puts "#{key} #{h_b[value]}"  # Aグループのメンバー番号とCグループのメンバー番号を出力
 end
+
+
+C101
+
+x = gets.chomp
+arr = []
+for i in 1..364
+    arr.push(i.to_s)
+end
+
+ans = arr.select{|a| a.include?(x)}
+puts ans.count
