@@ -491,3 +491,19 @@ end
 
 ans = arr.select{|a| a.include?(x)}
 puts ans.count
+
+
+
+九九の表
+
+arr = Array.new(9) { Array.new }
+
+for i in 1..9
+    for j in 1..9
+        arr[i-1].push(i*j)
+    end
+end
+
+arr.each do |a|
+    puts a.join(' ')
+end
