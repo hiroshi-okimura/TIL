@@ -507,3 +507,40 @@ end
 arr.each do |a|
     puts a.join(' ')
 end
+
+
+
+レベルアップ問題集 > 配列活用メニュー（言語選択）> 問題一覧 Ruby編 > 傾斜配点
+
+n = gets.to_i
+m = gets.split.map(&:to_i)
+ans = 0
+
+n.times do
+  a = gets.split.map(&:to_i)
+  score = 0
+  5.times do |j|
+    score += a[j] * m[j]
+  end
+  ans = score if score > ans
+end
+
+puts ans
+
+
+
+レベルアップ問題集 > 配列活用メニュー（言語選択）> 問題一覧 Ruby編 > 内定
+
+n, k, m = gets.split.map(&:to_i)
+arr = Array.new(n) { gets.to_i }
+
+ans = []
+arr.each do |a|
+    ans.push(a) if a >= k
+end
+
+if ans.length - m > 0
+    puts ans.length - m
+else
+    puts 0
+end
