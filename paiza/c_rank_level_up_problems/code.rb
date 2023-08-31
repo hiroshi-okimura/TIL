@@ -544,3 +544,20 @@ if ans.length - m > 0
 else
     puts 0
 end
+
+
+
+C090
+
+s = gets.chomp.split('')
+s.delete('-')
+
+arr = {'0': 12, '1': 3, '2': 4, '3': 5, '4': 6, '5': 7, '6': 8, '7': 9, '8': 10, '9': 11}
+
+dis = 0
+s.each do |num|
+    a = arr[num.to_sym]
+    dis += a * 2
+end
+
+puts dis
