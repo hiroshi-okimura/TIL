@@ -561,3 +561,68 @@ s.each do |num|
 end
 
 puts dis
+
+
+
+レベルアップ問題集 > 配列活用メニュー（言語選択）> 問題一覧 Ruby編 > 二人三脚
+
+# クラスの人数 N を入力
+n = gets.to_i
+
+# クラスメイトの身長を配列に格納
+a = []
+n.times do
+  a << gets.to_i
+end
+
+# 最小の身長差とその身長を格納する変数
+diff = 101
+ans = [nil, nil]
+
+# 隣接する身長の差が最小となるペアを探す
+for i in 0...(n - 1)
+  for j in (i + 1)...n
+    if (a[i] - a[j]).abs < diff
+      diff = (a[i] - a[j]).abs
+      ans = [a[i], a[j]]
+    end
+  end
+end
+
+# 選ばれた2人の身長を昇順に出力
+ans.sort!
+ans.each do |i|
+  puts i
+end
+
+
+
+C102
+
+live = "A"
+n = gets.to_i
+arr_a = Array.new(n) { gets.to_i }
+
+m = gets.to_i
+arr_b = Array.new(m) { gets.to_i }
+
+sch = []
+for i in 1..31
+    if !arr_a.include?(i) && !arr_b.include?(i)
+        sch.push("x")
+    elsif arr_a.include?(i) && arr_b.include?(i)
+        if live == "A"
+            sch.push("A")
+            live = "B"
+        else
+            sch.push("B")
+            live = "A"
+        end
+    elsif arr_a.include?(i) && !arr_b.include?(i)
+        sch.push("A")
+    elsif !arr_a.include?(i) && arr_b.include?(i)
+        sch.push("B")
+    end
+end
+
+puts sch
