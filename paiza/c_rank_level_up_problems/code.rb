@@ -626,3 +626,54 @@ for i in 1..31
 end
 
 puts sch
+
+
+
+
+レベルアップ問題集 > 配列活用メニュー（言語選択）> 問題一覧 Ruby編 > ボウリング
+
+arr = Array.new(4) { gets.split.map(&:to_i) }
+arr = arr.reverse
+
+array = []
+arr.each do |ar|
+    ar.reverse.each do |a|
+        array.push(a)
+    end
+end
+
+array.each.with_index(1) do |a, i|
+    if a == 1
+        puts i
+        break
+    end
+end
+
+puts array.count(1)
+
+
+
+レベルアップ問題集 > 配列活用メニュー（言語選択）> 問題一覧 Ruby編 > 集団行動
+
+n, q = gets.split.map(&:to_i)
+
+arr = Array.new(n)
+n.times { |i| arr[i] = i+1 }
+
+q.times do
+    shizi = gets.split
+    if shizi[0] == "reverse"
+        arr = arr.reverse
+    elsif shizi[0] == "resize"
+        if arr.length > shizi[1].to_i
+            (arr.length-shizi[1].to_i).times { arr.pop }
+        end
+    elsif shizi[0] == "swap"
+        a = arr[shizi[1].to_i-1]
+        b = arr[shizi[2].to_i-1]
+        arr[shizi[1].to_i-1] = b
+        arr[shizi[2].to_i-1] = a
+    end
+end
+
+puts arr
