@@ -109,4 +109,26 @@ end
 field.each do |ans|
     puts ans.join(' ')
 end
+
+
+
+B131
+
+n, m = gets.split.map(&:to_i)
+rosen = Array.new(n) { gets.split.map(&:to_i) }
+
+
+x = gets.to_i
+keiyu = Array.new(x) { gets.split.map(&:to_i) }
+
+
+untin = 0
+now_sta = 1
+
+keiyu.each do |k|
+    untin += (rosen[k[0]-1][k[1]-1] - rosen[k[0]-1][now_sta-1]).abs
+    now_sta = k[1]
+end
+
+puts untin
                     
