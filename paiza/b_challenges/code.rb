@@ -131,4 +131,51 @@ keiyu.each do |k|
 end
 
 puts untin
+
+
+
+B108
+
+# ゴンドラの数とグループの数を取得
+n, m = gets.split.map(&:to_i)
+
+# 各ゴンドラの乗車可能人数を取得
+a = []
+n.times do
+  a << gets.to_i
+end
+
+# 各グループの人数を取得
+b = []
+m.times do
+  b << gets.to_i
+end
+
+# 各ゴンドラに乗った人数を保存する配列
+c = Array.new(n, 0)
+
+# 現在のゴンドラのインデックス
+current_gondola = 0
+
+# 各グループの人々をゴンドラに乗せる
+b.each do |group|
+  while group > 0
+    # ゴンドラに乗れる人数を計算
+    ride = [a[current_gondola], group].min
+
+    # ゴンドラに乗った人数を更新
+    c[current_gondola] += ride
+
+    # グループの残りの人数を更新
+    group -= ride
+
+    # 次のゴンドラに移動
+    current_gondola = (current_gondola + 1) % n
+  end
+end
+
+# 結果を出力
+c.each do |num|
+  puts num
+end
                     
