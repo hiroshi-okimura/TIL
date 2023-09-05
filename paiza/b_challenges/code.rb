@@ -178,4 +178,33 @@ end
 c.each do |num|
   puts num
 end
+
+
+
+B117
+
+n = gets.to_i
+arr = Array.new(n) { gets.to_i }
+
+syukai = 0
+while arr.length > 1
+    if arr == arr.sort
+        break
+    else
+        if arr.first == arr.min
+            arr.shift
+        elsif arr.first == arr.max
+            num = arr.first
+            syukai += 1
+            arr.push(num)
+            arr.shift
+        else
+            num = arr.first
+            arr.push(num)
+            arr.shift
+        end
+    end
+end
+
+p syukai
                     
