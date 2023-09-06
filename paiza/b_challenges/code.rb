@@ -207,4 +207,40 @@ while arr.length > 1
 end
 
 p syukai
+
+
+
+B109
+
+n, high, wei, p, q = gets.split.map(&:to_i)
+reserved = Array.new(n) { gets.split.map(&:to_i) }
+all_seat = []
+
+high.times do |h|
+    wei.times do |w|
+       all_seat.push([h, w])
+    end
+end
+
+not_reserved = all_seat - reserved
+
+dis = 0
+arr = []
+not_reserved.each do |r|
+    arr.push((p-r[0]).abs + (q-r[1]).abs)
+end
+
+min = arr.min
+
+ind = []
+arr.each.with_index do |a, index|
+    if a == min
+        ind.push(index)
+    end
+end
+
+
+ind.each do |i|
+    puts not_reserved[i].join(' ')
+end
                     
