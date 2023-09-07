@@ -243,4 +243,38 @@ end
 ind.each do |i|
     puts not_reserved[i].join(' ')
 end
+
+
+
+B128
+
+def to_grid(num)
+    grid = Array.new(3) { Array.new(3, ".") }
+    count = num.to_i
+  
+    for i in 0..2
+      for j in 0..2
+        if count > 0
+          grid[i][j] = "#"
+          count -= 1
+        end
+      end
+    end
+  
+    grid
+  end
+  
+  n = gets.chomp
+  digits = n.chars.map(&:to_i)
+  
+  rows = []
+  digits.each_slice(3) do |slice|
+    grids = slice.map { |num| to_grid(num) }
+    3.times do |i|
+      row = grids.map { |grid| grid[i].join }.join
+      rows << row
+    end
+  end
+  
+  puts rows
                     
