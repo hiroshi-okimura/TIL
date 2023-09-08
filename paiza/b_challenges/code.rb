@@ -277,4 +277,26 @@ def to_grid(num)
   end
   
   puts rows
-                    
+
+
+
+B099
+
+n, kousui = gets.split.map(&:to_i)
+route = n.times.map { gets.split.map(&:to_i) }
+
+ans_route = []
+ture_count = 0
+n.times do |num|
+    for i in 0...n
+        ture_count += 1 if route[i][num] < kousui
+    end
+    ans_route.push(num+1) if ture_count == n
+    ture_count = 0
+end
+
+if ans_route.empty?
+    puts "wait"
+else
+    puts ans_route.join(" ")
+end
