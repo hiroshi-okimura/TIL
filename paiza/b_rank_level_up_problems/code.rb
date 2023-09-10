@@ -344,3 +344,16 @@ end
 S.each do |row|
   puts row.join
 end
+
+
+
+paizaラーニングトップ > レベルアップ問題集 > Aランクレベルアップメニュー（言語選択） > 問題一覧 Ruby編 > マップからの座標取得 > マップからの座標取得 解答コード例・解説
+
+h, w = gets.split.map(&:to_i)
+board = h.times.map { gets.split('') }
+
+board.each.with_index do |row, y|
+    row.each.with_index do |obj, x|
+        puts "#{y} #{x}" if obj == "#"
+    end
+end
