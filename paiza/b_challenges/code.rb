@@ -300,3 +300,34 @@ if ans_route.empty?
 else
     puts ans_route.join(" ")
 end
+
+
+
+B129
+
+n, m = gets.split.map(&:to_i)
+h, w = gets.split.map(&:to_i)
+board = Array.new(h) { Array.new(w, '.') }
+
+syukaku = {}
+for x in 1..m
+    syukaku[x.to_s] = 0
+end
+
+n.times do
+    a, b, c, d, e = gets.split.map(&:to_i)
+    for i in a..b
+        for j in c..d
+            syukaku[board[i-1][j-1].to_s] += 1 if board[i-1][j-1] != "."
+            board[i-1][j-1] = e
+        end
+    end
+end
+
+syukaku.each do |k, v|
+    puts v
+end
+
+board.each do |row|
+    puts row.join('')
+end
