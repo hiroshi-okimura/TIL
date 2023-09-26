@@ -677,3 +677,32 @@ q.times do
 end
 
 puts arr
+
+
+
+C098
+
+# 人数 N を取得
+n = gets.to_i
+
+# 各人が最初に持っているボールの個数を配列に格納
+balls = n.times.map { gets.to_i }
+
+# パス回しの情報の数 M を取得
+m = gets.to_i
+
+# パス回しの情報を元にボールの個数を更新
+m.times do
+  a, b, x = gets.split.map(&:to_i)
+  # 宣言した個数以上のボールを持っている場合とそうでない場合で処理を分ける
+  if balls[a - 1] >= x
+    balls[a - 1] -= x
+    balls[b - 1] += x
+  else
+    balls[b - 1] += balls[a - 1]
+    balls[a - 1] = 0
+  end
+end
+
+# 最終的に各人が持っているボールの個数を出力
+balls.each { |ball| puts ball }
