@@ -706,3 +706,25 @@ end
 
 # 最終的に各人が持っているボールの個数を出力
 balls.each { |ball| puts ball }
+
+
+
+C017
+
+p_a, p_b = gets.split.map(&:to_i)
+
+n = gets.to_i
+n.times do
+    c_a, c_b = gets.split.map(&:to_i)
+    if p_a > c_a
+        puts "High"
+    elsif p_a == c_a
+        if p_b < c_b
+            puts "High"
+        else
+            puts "Low"
+        end
+    else
+        puts "Low"
+    end
+end
