@@ -728,3 +728,27 @@ n.times do
         puts "Low"
     end
 end
+
+
+
+C123
+
+n = gets.to_i
+human = Array.new(n) { gets.to_i }
+mames = Array.new(n) { 0 }
+
+m = gets.to_i
+m.times do
+    a, b, num = gets.split.map(&:to_i)
+    for i in a..b
+        mames[i-1] += num
+    end
+end
+
+mames.each.with_index do |mame, ind|
+    if mame > human[ind]
+        puts human[ind]
+    else
+        puts mame
+    end
+end
