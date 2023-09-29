@@ -752,3 +752,23 @@ mames.each.with_index do |mame, ind|
         puts mame
     end
 end
+
+
+
+C120
+
+n = gets.to_i
+s_1 = gets.chomp.split('')
+s_2 = gets.chomp.split('')
+
+ans = false
+n.times do
+    s_1.unshift(s_1[n - 1])
+    s_1.pop
+    if s_2.join("") == s_1.join("")
+        ans = true
+    end
+    break if ans
+end
+
+puts ans ? "Yes" : "No"
