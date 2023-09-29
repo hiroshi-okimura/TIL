@@ -357,3 +357,25 @@ board.each.with_index do |row, y|
         puts "#{y} #{x}" if obj == "#"
     end
 end
+
+
+
+B107
+
+n, m, k = gets.split.map(&:to_i)
+
+# 配列を取得
+arr = (1..n).to_a
+
+k.times do
+    # Mに分け、2次元配列を作る。
+    arr = arr.each_slice(m).to_a
+
+    # シャッフル
+    arr = arr.reverse
+
+    # 1次元配列に戻す
+    arr = arr.flatten
+end
+
+puts arr
