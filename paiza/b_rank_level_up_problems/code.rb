@@ -379,3 +379,39 @@ k.times do
 end
 
 puts arr
+
+
+
+B098
+
+hatugen, ope_time, priod, good_ac = gets.split.map(&:to_i)
+
+arr = []
+ope_time.times { arr.push(gets.split.map(&:to_i)) }
+
+
+index = 1
+ans = false
+# 対象期間の3つの配列を作成
+sum_arr = Array.new(priod) { 0 }
+
+for j in 0...hatugen
+    for i in 0...ope_time
+        # 一個ずつ入れればいい。ただし、末尾に代入
+        sum_arr.shift
+        sum_arr.push(arr[i][j])
+
+        # 合計確認して、１０００以上だったらOK、違ったら次
+        sum = sum_arr.sum
+        if sum >= good_ac
+            puts "yes #{index}"
+            ans = true
+            break
+        end
+        index += 1
+    end
+    puts "no 0" if !ans
+    sum_arr = Array.new(priod) { 0 }
+    index = 1
+    ans = false
+end
