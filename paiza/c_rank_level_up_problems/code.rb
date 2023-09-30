@@ -772,3 +772,25 @@ n.times do
 end
 
 puts ans ? "Yes" : "No"
+
+
+
+C075
+
+n, m = gets.split.map(&:to_i)
+
+point = 0
+
+m.times do
+    fare = gets.to_i
+
+    # ポイントが運賃をカバーできるかチェック
+    if point >= fare
+        point -= fare
+    else
+        n -= fare
+        point += fare / 10
+    end
+
+    puts "#{n} #{point}"
+end
