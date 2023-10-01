@@ -415,3 +415,46 @@ for j in 0...hatugen
     index = 1
     ans = false
 end
+
+
+
+B095
+
+human, long = gets.split.map(&:to_i)
+
+longs = []
+long.times { longs.push(gets.to_i) }
+
+ans = []
+
+human.times do
+    # 1人目の値を配列で取得
+    arr = []
+    point = 100
+    long.times { arr.push(gets.to_i) }
+
+    for i in 0...long
+        # 最初引き算して、差の絶対値を出す
+        sa = (longs[i] - arr[i]).abs
+
+        # 条件によって減点
+        if sa <= 5 
+            point -= 0
+        elsif sa <= 10
+            point -= 1
+        elsif sa <= 20
+            point -= 2
+        elsif sa <= 30
+            point -= 3
+        else
+            point -= 5
+        end
+    end
+    
+    point = 0 if point < 0
+    ans.push(point)
+    arr = []
+    point = 100
+end
+
+puts ans.max
