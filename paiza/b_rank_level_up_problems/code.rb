@@ -458,3 +458,33 @@ human.times do
 end
 
 puts ans.max
+
+
+
+B104
+
+human, setumon = gets.split.map(&:to_i)
+
+# 入力を受け取る
+answers = human.times.map { gets.split }
+
+# 設問ごとに回答を取得
+setumon.times do |i|
+    valid_answers = []
+
+    # 各回答者のi番目の設問の回答を取得
+    human.times do |j|
+        answer = answers[j][i]
+        # 数字に変換できるかつ0以上100以下の整数であるかを確認
+        if answer.to_i.to_s == answer && answer.to_i >= 0 && answer.to_i <= 100
+            valid_answers << answer.to_i
+        end
+    end
+
+    # 平均値を算出して出力
+    if valid_answers.empty?
+        puts 0
+    else
+        puts valid_answers.sum / valid_answers.size
+    end
+end
