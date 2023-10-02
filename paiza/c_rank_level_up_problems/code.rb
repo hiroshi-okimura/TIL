@@ -809,3 +809,19 @@ n.times do
         puts "no"
     end
 end
+
+
+
+C055
+
+n = gets.to_i
+target = gets.chomp
+ans = false
+
+n.times do
+    s = gets.chomp
+    puts s.include?(target) ? s  : next
+    ans = true if s.include?(target)
+end
+
+puts "None" if !ans
