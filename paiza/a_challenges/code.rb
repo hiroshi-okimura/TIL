@@ -87,3 +87,4 @@ nittei.each do |n|
 end
 
 puts rennkin_max
+
