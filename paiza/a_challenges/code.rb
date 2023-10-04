@@ -56,3 +56,34 @@ end
 count = reachable.count(false) - 1 # 0番目の要素はカウントから除外
 
 puts count
+
+
+
+
+A066
+
+n = gets.to_i
+arr = Array.new(n) { gets.split.map(&:to_i) }
+max_day = arr.flatten.max
+
+nittei = Array.new(max_day)
+
+arr.each do |a|
+    for i in a[0]..a[1]
+        nittei[i-1] = i
+    end
+end
+
+
+rennkin = 0
+rennkin_max = 0
+nittei.each do |n|
+    if n != nil
+        rennkin += 1
+    else
+        rennkin = 0
+    end
+    rennkin_max = rennkin if rennkin_max < rennkin
+end
+
+puts rennkin_max
