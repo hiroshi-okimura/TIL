@@ -488,3 +488,20 @@ setumon.times do |i|
         puts valid_answers.sum / valid_answers.size
     end
 end
+
+
+
+C023
+
+tousen = gets.split.map(&:to_i)
+n = gets.to_i
+
+
+n.times do
+    kosu = 0
+    arr = gets.split.map(&:to_i)
+    arr.each do |a|
+        kosu += 1 if tousen.include?(a)
+    end
+    puts kosu
+end
