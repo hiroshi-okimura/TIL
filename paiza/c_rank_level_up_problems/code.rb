@@ -825,3 +825,13 @@ n.times do
 end
 
 puts "None" if !ans
+
+
+
+C014
+
+n, r = gets.split.map(&:to_i)
+n.times do |i|
+    h, w, d = gets.split.map(&:to_i)
+    puts i + 1 if r * 2 <= h && r * 2 <= w && r * 2 <= d
+end
