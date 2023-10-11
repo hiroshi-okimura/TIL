@@ -835,3 +835,26 @@ n.times do |i|
     h, w, d = gets.split.map(&:to_i)
     puts i + 1 if r * 2 <= h && r * 2 <= w && r * 2 <= d
 end
+
+
+
+C078
+
+n, min, max = gets.split.map(&:to_i)
+kabu = 0
+rieki = 0
+
+n.times do |day|
+    kabuka = gets.to_i
+    if kabuka <= min
+        kabu += 1
+        rieki -= kabuka
+    elsif kabuka >= max
+        rieki += kabu * kabuka
+        kabu = 0
+    else
+    end
+    rieki += kabu * kabuka if day+1 == n
+end
+
+puts rieki
